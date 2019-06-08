@@ -557,6 +557,9 @@ export function importThreadFromInstrumentsTrace(args: {
 export function readInstrumentsKeyedArchive(buffer: ArrayBuffer): any {
   const byteArray = new Uint8Array(buffer)
   const parsedPlist = parseBinaryPlist(byteArray)
+
+  console.log('parsedPlist', parsedPlist)
+
   const data = expandKeyedArchive(parsedPlist, ($classname, object) => {
     switch ($classname) {
       case 'NSTextStorage':
@@ -847,6 +850,8 @@ class BinaryPlistParser {
       this.offsetTable.push(this.parseInteger(tableOffset, offsetSize))
       tableOffset += offsetSize
     }
+
+    console.log(this.parseObject(this.offsetTable[rootIndex]))
 
     // Parse the root object assuming the graph is a tree
     return this.parseObject(this.offsetTable[rootIndex])
