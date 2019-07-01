@@ -469,7 +469,6 @@ export class StackListProfileBuilder extends Profile {
     }
 
     this._appendSample(stack, weight, true)
-    this._appendSample(stack, weight, false)
   }
 
   private pendingSample: {
